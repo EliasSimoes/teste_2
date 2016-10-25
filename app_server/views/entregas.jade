@@ -5,26 +5,69 @@ block content
     h1 {{titulo}}
     input.form-control(type="text" placeholder="Buscar entregas" ng-model="buscar")
     br
-    table.table
-       tr
-         td
-         td Nome
-         td Número do contrato
-         td Valor do contrato
-         td Endereço
-         td Data do cadastro
-       tr(ng-repeat="cliente in clientes") 
-         td
-          input(input type="checkbox" ng-model="cliente.selecionado")    
-         td {{cliente.nome}}   
-         td {{cliente.codigo}}   
-         td {{cliente.valor | currency}}   
-         td {{cliente.endereco}}   
-         td {{cliente.data | date: 'dd/MM/yyyy HH:mm'}}
-    form.form(name="clienteForm")
-      input.form-control(type="text" ng-model="cliente.nome" placeholder="Nome" ng-required="true")
-      input.form-control(type="text" ng-model="cliente.codigo" placeholder="Insira o número do contrato" ng-required="true")
-      input.form-control(type="text" ng-model="cliente.valor" placeholder="insira o valor do contrato" ng-required="true")
-      input.form-control(type="text" ng-model="cliente.endereco" placeholder="insira o endereço" ng-required="true")
-      button.btn.btn-primary.btn-block(ng-click="adicionarCliente(cliente)" ng-disabled="clienteForm.$invalid") Adicionar cliente
-      button.btn.btn-danger.btn-block(ng-click="apagarCliente(clientes)" ng-if="checkSelecionado(clientes)") Deletar cliente
+    .row.hidden-xs  
+      table.table.wow.fadeInDown
+        tr
+          td
+          td Nome
+          td Número do contrato
+          td Valor do contrato
+          td Endereço
+          td Data do cadastro
+        tr(ng-repeat="cliente in clientes | filter:buscar | orderBy:'name'") 
+          td
+            input(input type="checkbox" ng-model="cliente.selecionado")    
+          td {{cliente.nome}}   
+          td {{cliente.codigo}}
+          td {{cliente.valor | currency}}   
+          td {{cliente.endereco}}   
+          td {{cliente.data | date: 'dd/MM/yyyy HH:mm'}}
+    .row.visible-xs
+      table.table.wow.fadeInDown
+        tr
+          td
+          td Nome
+          td Número do contrato
+        tr(ng-repeat="cliente in clientes | filter:buscar | orderBy:'name'") 
+          td
+            input(input type="checkbox" ng-model="cliente.selecionado")    
+          td {{cliente.nome}}   
+          td {{cliente.codigo}}
+    .row.wow.fadeInDown
+      .col-xs-12.col-sm-12
+        h3 Adicione um cliente
+      form.form(name="clienteForm")
+        .col-xs-12.col-sm-6
+          label.control-label Nome
+          input.form-control(type="text" ng-model="cliente.nome" placeholder="Nome" ng-required="true")
+          label.control-label Endereço
+          input.form-control(type="text" ng-model="cliente.endereco" placeholder="insira o endereço" ng-required="true")
+        .col-xs-12.col-sm-6
+          label.control-label Valor
+          input.form-control(type="text" ng-model="cliente.valor" placeholder="insira o valor do contrato" ng-required="true")
+          label.control-label Número de contrato
+          input.form-control(type="text" ng-model="cliente.codigo" placeholder="Insira o número do contrato" ng-required="true")
+          br
+      .col-xs-12.col-sm-6.col-md-offset-3
+        button.btn.btn-primary.btn-block(ng-click="adicionarCliente(cliente)" ng-disabled="clienteForm.$invalid") Adicionar cliente
+        button.btn.btn-danger.btn-block(ng-click="apagarCliente(clientes)" ng-if="checkSelecionado(clientes)") Deletar cliente
+    hr
+    .row.wow.fadeInDown
+      .col-xs-12.col-sm-4
+        h3 Em dúvida sobre o endereço?
+        .col-xs-12
+          label.control-label Insira seu CEP
+          br
+        .col-xs-12
+          input.form-control(type="text" placeholder="99999-999"  ng-model="cepInput")
+        .col-xs-12
+          button.btn.btn-primary.btn-block(ng-click="consultarEndereco(cepInput)") Consultar Endereço
+      .col-xs-12.col-sm-8
+        p Resultado da busca
+        .list.list-group(ng-model="endereco" ng-show="endereco")
+          .list-item-group
+            p {{endereco.logradouro}}
+          .list-item-group
+            p {{endereco.bairro}}
+          .list-item-group
+            p {{endereco.localidade}}

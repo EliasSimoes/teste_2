@@ -1,9 +1,10 @@
 extends layout
 
 block content
-  .container-fluid.bg-3.text-center
+  .container-fluid.bg-4.text-center
     h1= title
-    .col-xs-12.col-sm-6
+    .col-xs-12.col-sm-6.wow.fadeInLeft
+      p Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras sollicitudin ante tellus, eu venenatis dui convallis a. Sed velit dolor, sodales vitae dapibus id, aliquam ut nisl. Cras sollicitudin ante tellus, eu venenatis dui convallis a. Sed velit dolor, eu venenatis dui convallis a. Sed velit dolor.
       form.form-horizontal
         .form-group
           .text-left
@@ -17,7 +18,10 @@ block content
           .text-left
             label.control-label Mensagem
             textarea.form-control(placeholder='Deixe sua mensagem' rows='5')
-        a.btn.btn-primary.btn-lg.pull-right(href='/') Enviar
-    .col-xs-12.col-sm-6
+        a.btn.btn-primary.btn-lg.pull-right.btn-block(href='/') Enviar
+    .col-xs-12.col-sm-6.wow.fadeInRight
+      .col-xs-12.col-sm-12.text-right
+        p Endereço: Rua praia do cerejo, 211. Campo Belo, São Paulo.
+        p Telefone: (11) 5033-3260
       .panel-body
-              img.img-responsive.img-rounded(src='http://maps.googleapis.com/maps/api/staticmap?center=-23.639775, -46.663621&zoom=18&size=400x350&sensor=false&markers=-23.639775, -46.663621&scale=2')
+        img.img-responsive.img-rounded(src='http://maps.googleapis.com/maps/api/staticmap?center=-23.639775, -46.663621&zoom=18&size=400x350&sensor=false&markers=-23.639775, -46.663621&scale=2')
