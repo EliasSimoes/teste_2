@@ -1,0 +1,23 @@
+extends layout
+
+block content
+  .container-fluid.bg-3.text-center
+    h1= title
+    .col-xs-12.col-sm-6
+      form.form-horizontal
+        .form-group
+          .text-left
+            label.control-label Nome
+            input.form-control(placeholder='Digite seu nome')
+        .form-group
+          .text-left
+            label.control-label E-mail
+            input.form-control(placeholder='Digite seu E-mail')
+        .form-group
+          .text-left
+            label.control-label Mensagem
+            textarea.form-control(placeholder='Deixe sua mensagem' rows='5')
+        a.btn.btn-primary.btn-lg.pull-right(href='/') Enviar
+    .col-xs-12.col-sm-6
+      .panel-body
+              img.img-responsive.img-rounded(src='http://maps.googleapis.com/maps/api/staticmap?center=-23.639775, -46.663621&zoom=18&size=400x350&sensor=false&markers=-23.639775, -46.663621&scale=2')

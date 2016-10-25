@@ -1,0 +1,30 @@
+extends layout
+
+block content
+  .container-fluid.bg-2(ng-controller="myCtlr")
+    h1 {{titulo}}
+    input.form-control(type="text" placeholder="Buscar entregas" ng-model="buscar")
+    br
+    table.table
+       tr
+         td
+         td Nome
+         td Número do contrato
+         td Valor do contrato
+         td Endereço
+         td Data do cadastro
+       tr(ng-repeat="cliente in clientes") 
+         td
+          input(input type="checkbox" ng-model="cliente.selecionado")    
+         td {{cliente.nome}}   
+         td {{cliente.codigo}}   
+         td {{cliente.valor | currency}}   
+         td {{cliente.endereco}}   
+         td {{cliente.data | date: 'dd/MM/yyyy HH:mm'}}
+    form.form(name="clienteForm")
+      input.form-control(type="text" ng-model="cliente.nome" placeholder="Nome" ng-required="true")
+      input.form-control(type="text" ng-model="cliente.codigo" placeholder="Insira o número do contrato" ng-required="true")
+      input.form-control(type="text" ng-model="cliente.valor" placeholder="insira o valor do contrato" ng-required="true")
+      input.form-control(type="text" ng-model="cliente.endereco" placeholder="insira o endereço" ng-required="true")
+      button.btn.btn-primary.btn-block(ng-click="adicionarCliente(cliente)" ng-disabled="clienteForm.$invalid") Adicionar cliente
+      button.btn.btn-danger.btn-block(ng-click="apagarCliente(clientes)" ng-if="checkSelecionado(clientes)") Deletar cliente
