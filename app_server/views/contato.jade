@@ -5,20 +5,21 @@ block content
     h1= title
     .col-xs-12.col-sm-6.wow.fadeInLeft
       p Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras sollicitudin ante tellus, eu venenatis dui convallis a. Sed velit dolor, sodales vitae dapibus id, aliquam ut nisl. Cras sollicitudin ante tellus, eu venenatis dui convallis a. Sed velit dolor, eu venenatis dui convallis a. Sed velit dolor.
-      form.form-horizontal
+      form.form(name="contatoForm")
         .form-group
           .text-left
             label.control-label Nome
-            input.form-control(placeholder='Digite seu nome')
+            input.form-control(placeholder='Digite seu nome' ng-required="true")
         .form-group
           .text-left
             label.control-label E-mail
-            input.form-control(placeholder='Digite seu E-mail')
+            input.form-control(placeholder='Digite seu E-mail' ng-required="true")
         .form-group
           .text-left
             label.control-label Mensagem
-            textarea.form-control(placeholder='Deixe sua mensagem' rows='5')
-        a.btn.btn-primary.btn-lg.pull-right.btn-block(href='/') Enviar
+            textarea.form-control(placeholder='Deixe sua mensagem' rows='5' ng-required="true")
+        button.btn.btn-primary.btn-lg.pull-right.btn-block(ng-disabled="contatoForm.$invalid") Enviar
+          a(href="/")
     .col-xs-12.col-sm-6.wow.fadeInRight
       .col-xs-12.col-sm-12.text-right
         p Endereço: Rua praia do cerejo, 211. Campo Belo, São Paulo.
